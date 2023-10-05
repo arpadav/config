@@ -5,7 +5,7 @@ MAX_DEPTH=2
 INIT_NAME=".init~"
 
 # remove all directory init files
-find . -maxdepth $MAX_DEPTH -type f -name "$INIT_NAME" -exec rm -f {} \;
+find ./copy/ -type f -name "$INIT_NAME" -exec rm -f {} \;
 
 # copy all hidden dirs 
 cd copy
