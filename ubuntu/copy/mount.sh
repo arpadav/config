@@ -5,6 +5,7 @@
 # define username
 MOUNT_UID="vorosaa1"
 MOUNT_USERNAME="vorosaa1"
+MOUNT_DIR_0="/home/vorosaa1/mnt"
 
 # ask for password
 read -s -p "Mount password: " MOUNT_PASSWORD
@@ -12,11 +13,11 @@ echo
 
 # create an associative array of shares to mount
 declare -A mounts=(
-    ["/home/vorosaa1/mnt/CrossDept"]="//isilonshares/CrossDept"
-    ["/home/vorosaa1/mnt/KM"]="//isilonshares/apldata/aos"
-    ["/home/vorosaa1/mnt/AOS_public"]="//aplfsfalcon.jhuapl.edu/aodpublic\$"
-    ["/home/vorosaa1/mnt/aplshare"]="//isilonshares/aplshare"
-    ["/home/vorosaa1/mnt/software"]="//aplfsfrontier.jhuapl.edu/software" 
+    ["$MOUNT_DIR_0/CrossDept"]="//isilonshares/CrossDept"
+    ["$MOUNT_DIR_0/KM"]="//isilonshares/apldata/aos"
+    ["$MOUNT_DIR_0/AOS_public"]="//aplfsfalcon.jhuapl.edu/aodpublic\$"
+    ["$MOUNT_DIR_0/aplshare"]="//isilonshares/aplshare"
+    ["$MOUNT_DIR_0/software"]="//aplfsfrontier.jhuapl.edu/software" 
 )
 
 # iterate over the array
