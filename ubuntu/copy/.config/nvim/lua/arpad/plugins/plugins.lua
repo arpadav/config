@@ -2,7 +2,9 @@ return {
   
     "ThePrimeagen/vim-be-good",
     "tpope/vim-commentary",
+    "tpope/vim-surround",
     "neovim/nvim-lspconfig",
+    "github/copilot.vim",
     {
         "nvim-telescope/telescope.nvim",
         tag = "0.1.3",

@@ -16,3 +16,7 @@ tar xzvf nvim-linux64.tar.gz
 cd nvim-linux64
 sudo cp -r * /usr/
 cd ~
+
+# Nvim copy config to this repo
+rsync -av ~/.config/nvim/ ubuntu/copy/.config/nvim/
+
