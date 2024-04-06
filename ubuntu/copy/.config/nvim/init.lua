@@ -26,8 +26,18 @@ lspconfig.pyright.setup {
 }
 lspconfig.tsserver.setup {}
 lspconfig.rust_analyzer.setup {
-  cmd = {"/home/vorosaa1/.local/bin/rust-analyzer"},
+  cmd = {"/home/vorosaa1/.cargo/bin/rust-analyzer"},
 }
+require("mason").setup({
+    ui = {
+        icons = {
+            package_installed = "✓",
+            package_pending = "➜",
+            package_uninstalled = "✗",
+        }
+    }
+})
+require("mason-lspconfig").setup()
 
 -- Global mappings.
 local builtin = require('telescope.builtin')

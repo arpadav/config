@@ -1,10 +1,10 @@
 return {
-  
-    "ThePrimeagen/vim-be-good",
     "tpope/vim-commentary",
     "tpope/vim-surround",
     "neovim/nvim-lspconfig",
-    "github/copilot.vim",
+    "Exafunction/codeium.vim",
+    "williamboman/mason.nvim",
+    "williamboman/mason-lspconfig.nvim",
     {
         "nvim-telescope/telescope.nvim",
         tag = "0.1.3",
