@@ -24,7 +24,7 @@ lspconfig.pyright.setup {
         }
     }
 }
-lspconfig.tsserver.setup {}
+lspconfig.ts_ls.setup {}
 lspconfig.rust_analyzer.setup {
   cmd = {"/home/vorosaa1/.cargo/bin/rust-analyzer"},
 }
