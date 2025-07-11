@@ -19,25 +19,72 @@ lspconfig.pyright.setup {
                 useLibraryCodeForTypes = true,
                 diagnosticMode = "workspace",
                 typeCheckingMode = "basic",
-                stubPath = "/home/vorosaa1/.local/share/nvim/lspinstall/python/node_modules/typeshed/stdlib",
+                stubPath = "/home/vorosaa1/.local/share/nvim/lspinstall/python/node_modules/typeshed/stdlib"
             }
         }
     }
 }
-lspconfig.tsserver.setup {}
-lspconfig.rust_analyzer.setup {
-  cmd = {"/home/vorosaa1/.cargo/bin/rust-analyzer"},
-}
+
+lspconfig.rust_analyzer.setup({
+    settings = {
+        ['rust-analyzer'] = {
+            check = {
+                command = "clippy",
+                extraArgs = {
+                    "--", "-Dclippy::unwrap_used", "-Dclippy::expect_used",
+                    "-Dclippy::panic"
+                }
+            },
+            checkOnSave = true
+        }
+    }
+})
+
 require("mason").setup({
     ui = {
         icons = {
             package_installed = "✓",
             package_pending = "➜",
-            package_uninstalled = "✗",
+            package_uninstalled = "✗"
         }
     }
 })
 require("mason-lspconfig").setup()
+
+require("formatter").setup({
+    logging = true,
+    log_level = vim.log.levels.WARN,
+    filetype = {
+        python = {require("formatter.filetypes.python").black},
+        sh = {require("formatter.filetypes.sh").shfmt},
+        cpp = {require("formatter.filetypes.cpp").clangformat},
+        lua = {
+            function()
+                return {
+                    exe = vim.fn.stdpath("data") .. "/mason/bin/lua-format",
+                    args = {},
+                    stdin = true
+                }
+            end
+        },
+        rust = {
+            function()
+                return {
+                    exe = vim.env.HOME .. "/.cargo/bin/rustfmt",
+                    args = {},
+                    stdin = true
+                }
+            end
+        }
+    }
+})
+
+-- local null_ls = require("null-ls")
+-- null_ls.setup({
+--     sources = {
+--         null_ls.builtins.formatting.lua_format,
+--     }
+-- })
 
 -- Global mappings.
 local builtin = require('telescope.builtin')
@@ -62,23 +109,23 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
         -- Buffer local mappings.
         -- See `:help vim.lsp.*` for documentation on any of the below functions
-        local opts = { buffer = ev.buf }
+        local opts = {buffer = ev.buf}
         vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
         vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
         vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
         vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
         vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
         vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, opts)
-        vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, opts)
+        vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder,
+                       opts)
         vim.keymap.set('n', '<space>wl', function()
             print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
         end, opts)
         vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, opts)
         vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, opts)
-        vim.keymap.set({ 'n', 'v' }, '<space>ca', vim.lsp.buf.code_action, opts)
+        vim.keymap.set({'n', 'v'}, '<space>ca', vim.lsp.buf.code_action, opts)
         vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
-        vim.keymap.set('n', '<space>f', function()
-            vim.lsp.buf.format { async = true }
-        end, opts)
-    end,
+        vim.keymap.set('n', '<space>f',
+                       function() vim.lsp.buf.format {async = true} end, opts)
+    end
 })
