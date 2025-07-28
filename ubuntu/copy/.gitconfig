@@ -4,25 +4,26 @@
 [user]
     name = arpadav
     email = arpadav@gmail.com
-[core]
-	fsyncObjectFiles = false
-	editor = nvim
 [submodule]
 	recurse = true
+[core]
+	editor = nvim
 [http]
 	sslBackend = gnutls
 	sslCAinfo = /etc/ssl/certs/ca-certificates.crt
 	sslverify = false
+[init]
+    defaultBranch = main
 
 ; --------------------------------------------------
 ; for all under `github.com`
 ; --------------------------------------------------
-[includeIf "gitdir:~/github.com/**"]
+[includeIf "hasconfig:remote.*.url:git@github.com:*/**"]
     path = ~/.gitconfig-github.com
 
 ; --------------------------------------------------
 ; for all under `gitlab.jhuapl.edu`
 ; --------------------------------------------------
-[includeIf "gitdir:~/gitlab.jhuapl.edu/**"]
+[includeIf "hasconfig:remote.*.url:git@gitlab.jhuapl.edu:*/**"]
     path = ~/.gitconfig-gitlab.jhuapl.edu
 
