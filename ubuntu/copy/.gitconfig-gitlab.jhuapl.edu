@@ -1,0 +1,7 @@
+[user]
+	name = Arpad Voros
+	email = Arpad.Voros@jhuapl.edu
+[url "git@qat-gitlab.jhuapl.edu:"]
+    insteadOf = https://qat-gitlab.jhuapl.edu/ 
+[url "git@gitlab.jhuapl.edu:"]
+    insteadOf = https://gitlab.jhuapl.edu/
