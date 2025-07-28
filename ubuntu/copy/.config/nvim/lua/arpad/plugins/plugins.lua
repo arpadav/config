@@ -2,9 +2,16 @@ return {
     "tpope/vim-commentary",
     "tpope/vim-surround",
     "neovim/nvim-lspconfig",
-    "Exafunction/codeium.vim",
+    "Exafunction/windsurf.vim",
+    "mhartington/formatter.nvim",
     "williamboman/mason.nvim",
     "williamboman/mason-lspconfig.nvim",
+    {
+        "nvimtools/none-ls.nvim",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+        }
+    },
     {
         "nvim-telescope/telescope.nvim",
         tag = "0.1.3",
