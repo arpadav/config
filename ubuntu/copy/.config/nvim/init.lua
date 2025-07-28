@@ -1,4 +1,3 @@
--- Mapleader
 vim.g.mapleader = " "
 
 -- Lua configs
@@ -92,6 +91,17 @@ vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
 vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
 vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
+vim.keymap.set('n', '<leader>c', function()
+    local row = vim.api.nvim_win_get_cursor(0)[1]
+    -- vim.api
+    --     .nvim_buf_set_lines(0, row - 1, row - 1, false, {string.rep("-", 50)})
+    vim.api.nvim_buf_set_lines(0, row - 1, row - 1, false, {
+        "--------------------------------------------------"
+    })
+    vim.api.nvim_win_set_cursor(0, {row, 0})
+    -- vim.api.nvim_feedkeys("gcc", "n", false)
+    vim.cmd((row) .. "Commentary")
+end, {desc = "Insert commented horizontal rule above"})
 
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 vim.keymap.set('n', '<space>e', vim.diagnostic.open_float)
